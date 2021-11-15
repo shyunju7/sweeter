@@ -1,7 +1,9 @@
 import AppRouter from "./Router";
 import React, { useState } from "react";
+import { authService } from "../fbBase";
 
 function App() {
+  console.log(authService.currentUser);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <>
