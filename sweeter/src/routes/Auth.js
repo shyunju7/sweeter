@@ -1,8 +1,14 @@
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import React, { useState } from "react";
+import { authService } from "../fbBase";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
-  const [passowrd, setPassword] = useState("");
+  const [password, setPassword] = useState("");
+  const [isNewAccount, setNewAccount] = useState(true);
 
   const onChange = (e) => {
     const {
@@ -13,16 +19,33 @@ const Auth = () => {
     else if (name === "password") setPassword(value);
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
+    try {
+      let data;
+      if (isNewAccount) {
+        // create new User
+        data = await createUserWithEmailAndPassword(
+          authService,
+          email,
+          password
+        );
+      } else {
+        // login
+        data = await signInWithEmailAndPassword(authService, email, password);
+      }
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div>
-      <form>
+      <form onSubmit={onSubmit}>
         <input
           name="email"
-          type="text"
+          type="email"
           placeholder="E-Mail"
           required
           value={email}
@@ -34,11 +57,14 @@ const Auth = () => {
           type="password"
           placeholder="Password"
           required
-          value={passowrd}
+          value={password}
           onChange={onChange}
           autoComplete="off"
         />
-        <input type="submit" value="LOGIN" onClick={onSubmit} />
+        <input
+          type="submit"
+          value={isNewAccount ? "Create Account" : "Login"}
+        />
       </form>
 
       <div>
