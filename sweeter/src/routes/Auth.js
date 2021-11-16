@@ -1,9 +1,10 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
 } from "firebase/auth";
 import React, { useState } from "react";
-import { authService } from "../fbBase";
+import { authService, provider } from "../fbBase";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -42,6 +43,11 @@ const Auth = () => {
     }
   };
 
+  const onSocialLogin = async () => {
+    const data = await signInWithPopup(authService, provider);
+    console.log(data);
+  };
+
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -74,7 +80,7 @@ const Auth = () => {
       </span>
 
       <div>
-        <button>Continue with Google</button>
+        <button onClick={onSocialLogin}>Continue with Google</button>
       </div>
     </div>
   );
