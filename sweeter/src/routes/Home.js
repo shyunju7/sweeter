@@ -1,5 +1,5 @@
 import { addDoc, collection, onSnapshot } from "firebase/firestore";
-import { ref, uploadString } from "firebase/storage";
+import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import Sweet from "../components/Sweet";
 import { dbService, storageService } from "../fbBase";
@@ -21,20 +21,30 @@ const Home = ({ userObject }) => {
   }, []);
   const onSubmit = async (e) => {
     e.preventDefault();
-    const fileRef = ref(storageService, `${userObject.uid}/${v4()}`);
-    console.log(fileRef);
-    const response = await uploadString(fileRef, attachment, "data_url");
-    console.log(response);
-    // try {
-    //   await addDoc(collection(dbService, "sweets"), {
-    //     text: sweet,
-    //     createAt: Date.now(),
-    //     creatorId: userObject.uid,
-    //   });
-    //   setSweet("");
-    // } catch (error) {
-    //   console.log(`ERROR:`, error);
-    // }
+
+    let attachmentUrl = "";
+    if (attachment !== "") {
+      const attachmentRef = ref(storageService, `${userObject.uid}/${v4()}`);
+      const response = await uploadString(
+        attachmentRef,
+        attachment,
+        "data_url"
+      );
+      attachmentUrl = await getDownloadURL(response.ref);
+    }
+    const newSweetObject = {
+      text: sweet,
+      createAt: Date.now(),
+      creatorId: userObject.uid,
+      attachmentUrl,
+    };
+    try {
+      await addDoc(collection(dbService, "sweets"), newSweetObject);
+      setSweet("");
+      setAttachment("");
+    } catch (error) {
+      console.log(`ERROR:`, error);
+    }
   };
   const onChange = (e) => {
     const {
