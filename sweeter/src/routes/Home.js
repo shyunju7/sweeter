@@ -2,7 +2,7 @@ import { addDoc, collection, getDoc, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { dbService } from "../fbBase";
 
-const Home = () => {
+const Home = ({ userObject }) => {
   const [sweet, setSweet] = useState("");
   const [sweetList, setSweetList] = useState([]);
 
@@ -25,8 +25,9 @@ const Home = () => {
     e.preventDefault();
     try {
       await addDoc(collection(dbService, "sweets"), {
-        sweet,
+        text: sweet,
         createAt: Date.now(),
+        creatorId: userObject.uid,
       });
       setSweet("");
     } catch (error) {

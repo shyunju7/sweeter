@@ -5,11 +5,12 @@ import { authService } from "../fbBase";
 function App() {
   const [init, setInit] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const [userObject, setUserObject] = useState(null);
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
         setIsLoggedIn(true);
+        setUserObject(user);
       } else {
         setIsLoggedIn(false);
       }
@@ -19,7 +20,11 @@ function App() {
   }, []);
   return (
     <>
-      {init ? <AppRouter isLoggedIn={isLoggedIn} /> : "initializing..."}
+      {init ? (
+        <AppRouter userObject={userObject} isLoggedIn={isLoggedIn} />
+      ) : (
+        "initializing..."
+      )}
       <footer>&copy; {new Date().getFullYear()} Sweeter</footer>
     </>
   );
