@@ -1,12 +1,14 @@
 import { addDoc, collection, onSnapshot } from "firebase/firestore";
+import { ref } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import Sweet from "../components/Sweet";
-import { dbService } from "../fbBase";
-
+import { dbService, storageService } from "../fbBase";
+import { v4 } from "uuid";
 const Home = ({ userObject }) => {
   const [sweet, setSweet] = useState("");
   const [sweetList, setSweetList] = useState([]);
-
+  const [attachment, setAttachment] = useState();
+  // snapshot - db에 변경을 알림
   useEffect(() => {
     onSnapshot(collection(dbService, "sweets"), (snapShot) => {
       const sweetArray = snapShot.docs.map((doc) => ({
@@ -19,16 +21,17 @@ const Home = ({ userObject }) => {
   }, []);
   const onSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await addDoc(collection(dbService, "sweets"), {
-        text: sweet,
-        createAt: Date.now(),
-        creatorId: userObject.uid,
-      });
-      setSweet("");
-    } catch (error) {
-      console.log(`ERROR:`, error);
-    }
+    const fileRef = ref(storageService, `${userObject.uid}/${v4}`);
+    // try {
+    //   await addDoc(collection(dbService, "sweets"), {
+    //     text: sweet,
+    //     createAt: Date.now(),
+    //     creatorId: userObject.uid,
+    //   });
+    //   setSweet("");
+    // } catch (error) {
+    //   console.log(`ERROR:`, error);
+    // }
   };
   const onChange = (e) => {
     const {
@@ -37,6 +40,24 @@ const Home = ({ userObject }) => {
 
     setSweet(value);
   };
+
+  // file upload
+  const onFileChange = (e) => {
+    const {
+      target: { files },
+    } = e;
+
+    const imageFile = files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = (finishedEvent) => {
+      const {
+        currentTarget: { result },
+      } = finishedEvent;
+      setAttachment(result);
+    };
+    fileReader.readAsDataURL(imageFile); // reader를 사용하여 파일을 읽을 것
+  };
+
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -46,7 +67,13 @@ const Home = ({ userObject }) => {
           placeholder="what's on your mind?"
           onChange={onChange}
         />
+        <input type="file" accept="image/*" onChange={onFileChange} />
         <input type="submit" value="sweet" />
+        {attachment && (
+          <div>
+            <img src={attachment} width="50px" height="50px" alt="sweetImg" />
+          </div>
+        )}
       </form>
 
       {sweetList.map((sweet) => (
