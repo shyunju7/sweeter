@@ -1,17 +1,30 @@
-import { addDoc, collection } from "firebase/firestore";
-import React, { useState } from "react";
+import { addDoc, collection, onSnapshot } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 import { dbService } from "../fbBase";
 
-const Home = () => {
-  const [text, setText] = useState("");
+const Home = ({ userObject }) => {
+  const [sweet, setSweet] = useState("");
+  const [sweetList, setSweetList] = useState([]);
+
+  useEffect(() => {
+    onSnapshot(collection(dbService, "sweets"), (snapShot) => {
+      const sweetArray = snapShot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      setSweetList(sweetArray);
+    });
+  }, []);
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
       await addDoc(collection(dbService, "sweets"), {
-        text,
+        text: sweet,
         createAt: Date.now(),
+        creatorId: userObject.uid,
       });
-      setText("");
+      setSweet("");
     } catch (error) {
       console.log(`ERROR:`, error);
     }
@@ -21,19 +34,25 @@ const Home = () => {
       target: { value },
     } = e;
 
-    setText(value);
+    setSweet(value);
   };
   return (
     <div>
       <form onSubmit={onSubmit}>
         <input
-          value={text}
+          value={sweet}
           type="text"
           placeholder="what's on your mind?"
           onChange={onChange}
         />
         <input type="submit" value="sweet" />
       </form>
+
+      {sweetList.map((sweet) => (
+        <div key={sweet.id}>
+          <h2>{sweet.text}</h2>
+        </div>
+      ))}
     </div>
   );
 };
