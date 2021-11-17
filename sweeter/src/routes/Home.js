@@ -7,7 +7,7 @@ import { v4 } from "uuid";
 const Home = ({ userObject }) => {
   const [sweet, setSweet] = useState("");
   const [sweetList, setSweetList] = useState([]);
-  const [attachment, setAttachment] = useState();
+  const [attachment, setAttachment] = useState("");
   // snapshot - db에 변경을 알림
   useEffect(() => {
     onSnapshot(collection(dbService, "sweets"), (snapShot) => {

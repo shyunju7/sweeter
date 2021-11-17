@@ -52,12 +52,14 @@ const Sweet = ({ sweetObject, isOwner }) => {
       ) : (
         <div>
           <h2>{sweetObject.text}</h2>
-          <img
-            src={sweetObject.attachmentUrl}
-            width="100px"
-            height="100px"
-            alt="userImg"
-          />
+          {sweetObject.attachmentUrl !== "" ? (
+            <img
+              src={sweetObject.attachmentUrl}
+              width="100px"
+              height="100px"
+              alt="userImg"
+            />
+          ) : null}
           {isOwner && (
             <>
               <button onClick={editSweet}>edit</button>
