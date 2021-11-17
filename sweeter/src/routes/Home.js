@@ -1,4 +1,4 @@
-import { addDoc, collection, getDoc, getDocs } from "firebase/firestore";
+import { addDoc, collection, onSnapshot } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { dbService } from "../fbBase";
 
@@ -6,21 +6,16 @@ const Home = ({ userObject }) => {
   const [sweet, setSweet] = useState("");
   const [sweetList, setSweetList] = useState([]);
 
-  const getTextList = async () => {
-    const querySnapshot = await getDocs(collection(dbService, "sweets"));
-    querySnapshot.forEach((docs) => {
-      const textObject = {
-        ...docs.data(),
-        id: docs.id,
-      };
-      setSweetList((prev) => [...prev, textObject]);
-    });
-  };
-
   useEffect(() => {
-    getTextList();
-  }, []);
+    onSnapshot(collection(dbService, "sweets"), (snapShot) => {
+      const sweetArray = snapShot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
 
+      setSweetList(sweetArray);
+    });
+  }, []);
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
