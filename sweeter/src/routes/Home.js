@@ -1,5 +1,5 @@
 import { addDoc, collection, onSnapshot } from "firebase/firestore";
-import { ref } from "firebase/storage";
+import { ref, uploadString } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import Sweet from "../components/Sweet";
 import { dbService, storageService } from "../fbBase";
@@ -21,7 +21,10 @@ const Home = ({ userObject }) => {
   }, []);
   const onSubmit = async (e) => {
     e.preventDefault();
-    const fileRef = ref(storageService, `${userObject.uid}/${v4}`);
+    const fileRef = ref(storageService, `${userObject.uid}/${v4()}`);
+    console.log(fileRef);
+    const response = await uploadString(fileRef, attachment, "data_url");
+    console.log(response);
     // try {
     //   await addDoc(collection(dbService, "sweets"), {
     //     text: sweet,
