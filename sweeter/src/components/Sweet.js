@@ -1,6 +1,7 @@
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { deleteObject, ref } from "firebase/storage";
 import React, { useState } from "react";
-import { dbService } from "../fbBase";
+import { dbService, storageService } from "../fbBase";
 
 const Sweet = ({ sweetObject, isOwner }) => {
   const [isEditing, setEditing] = useState(false);
@@ -10,6 +11,7 @@ const Sweet = ({ sweetObject, isOwner }) => {
 
     if (ok) {
       await deleteDoc(doc(dbService, "sweets", sweetObject.id));
+      await deleteObject(ref(storageService, sweetObject.attachmentUrl));
     } else {
       return;
     }
