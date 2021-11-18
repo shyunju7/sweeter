@@ -11,7 +11,7 @@ twitter clone coding with firebase & reactJs <br />
 - [x] Send message
 - [x] Realtime message
 - [x] Upload image file
-- [ ] Update Profile
+- [x] Update Profile
 - [x] Update message
 - [x] Delete message
 
