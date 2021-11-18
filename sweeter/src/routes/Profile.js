@@ -1,10 +1,10 @@
 import { updateProfile } from "firebase/auth";
-import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authService, dbService } from "../fbBase";
 
-const Profile = ({ userObject }) => {
+const Profile = ({ userObject, refreshUser }) => {
   const [newDisplayName, setNewDisplayName] = useState(userObject.displayName);
   const navigate = useNavigate();
   const onLogout = () => {
@@ -40,6 +40,7 @@ const Profile = ({ userObject }) => {
     // 변경됐다면 update
     if (newDisplayName !== userObject.displayName) {
       await updateProfile(userObject, { displayName: newDisplayName });
+      refreshUser();
     } else {
       return;
     }
