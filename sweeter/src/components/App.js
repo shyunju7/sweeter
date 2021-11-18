@@ -41,6 +41,7 @@ function App() {
         console.log(`useEffect User:`, user);
       } else {
         setIsLoggedIn(false);
+        setUserObject(null);
       }
 
       setInit(true);
