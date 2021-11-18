@@ -6,44 +6,28 @@ import { updateProfile } from "firebase/auth";
 function App() {
   const [init, setInit] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userObject, setUserObject] = useState(null);
+  const [userObject, setUserObject] = useState({});
   const [newUserName, setNewUserName] = useState("");
-  const updateUserName = async (userName) => {
-    await updateProfile(userObject, { displayName: userName });
-  };
 
   const refreshUser = () => {
     const user = authService.currentUser;
-    console.log("refreshUser :", user);
     setUserObject(user);
     setNewUserName(user.displayName);
-
-    // 이 방법 연구해보기!
-    // setUserObject({
-    //   uid: user.uid,
-    //   displayName: user.displayName,
-    //   updateProfile: (args) => user.updateProfile(args),
-    // });
   };
 
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
-        setIsLoggedIn(true);
-        let userName = user.displayName;
-        if (!user.displayName) {
-          userName = user.email.substring(0, user.email.indexOf("@"));
-          updateUserName(userName);
+        if (user.displayName === null) {
+          const userName = user.email.substring(0, user.email.indexOf("@"));
+          updateProfile(user, { displayName: userName });
         }
-
         setUserObject(user);
-
-        console.log(`useEffect User:`, user);
+        setIsLoggedIn(true);
       } else {
         setIsLoggedIn(false);
         setUserObject(null);
       }
-
       setInit(true);
     });
   }, []);
