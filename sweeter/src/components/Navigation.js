@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Navigation = () => (
+const Navigation = ({ userObject }) => (
   <nav>
     <ul>
       <li>
         <Link to="/">HOME</Link>
       </li>
       <li>
-        <Link to="/profile">PROFILE</Link>
+        <Link to="/profile">{userObject.displayName} 's ROFILE</Link>
       </li>
     </ul>
   </nav>
