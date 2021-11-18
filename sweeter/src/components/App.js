@@ -8,11 +8,22 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userObject, setUserObject] = useState(null);
   const [newUserName, setNewUserName] = useState("");
+  const updateUserName = async (userName) => {
+    await updateProfile(userObject, { displayName: userName });
+  };
 
   const refreshUser = () => {
     const user = authService.currentUser;
+    console.log("refreshUser :", user);
     setUserObject(user);
     setNewUserName(user.displayName);
+
+    // 이 방법 연구해보기!
+    // setUserObject({
+    //   uid: user.uid,
+    //   displayName: user.displayName,
+    //   updateProfile: (args) => user.updateProfile(args),
+    // });
   };
 
   useEffect(() => {
@@ -22,10 +33,12 @@ function App() {
         let userName = user.displayName;
         if (!user.displayName) {
           userName = user.email.substring(0, user.email.indexOf("@"));
-          updateProfile(userObject, { displayName: userName });
+          updateUserName(userName);
         }
 
         setUserObject(user);
+
+        console.log(`useEffect User:`, user);
       } else {
         setIsLoggedIn(false);
       }
