@@ -11,12 +11,13 @@ const SweetContainer = styled.div`
   background-color: white;
   width: 100%;
   max-width: 320px;
-  padding: 20px;
+  padding: 8px 16px;
   border-radius: 10px;
   position: relative;
   display: flex;
   flex-direction: column;
   color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 32px;
 `;
 
 const SweetText = styled.h3`
@@ -41,7 +42,7 @@ const SweetInput = styled.input`
 
 const SweetImg = styled.img`
   right: -10px;
-  top: 20px;
+  top: 16px;
   position: absolute;
   border-radius: 50%;
   width: 50px;
@@ -73,7 +74,13 @@ const Sweet = ({ sweetObject, isOwner }) => {
 
     if (ok) {
       await deleteDoc(doc(dbService, "sweets", sweetObject.id));
-      await deleteObject(ref(storageService, sweetObject.attachmentUrl));
+      await deleteObject(ref(storageService, sweetObject.attachmentUrl))
+        .then(() => {
+          alert("삭제되었습니다:(");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } else {
       return;
     }
