@@ -64,6 +64,7 @@ const Profile = ({ userObject, refreshUser }) => {
     if (newDisplayName !== userObject.displayName) {
       await updateProfile(userObject, { displayName: newDisplayName });
       refreshUser();
+      alert("업데이트되었습니다:)");
     } else {
       return;
     }

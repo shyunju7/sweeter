@@ -53,7 +53,7 @@ const SweetImg = styled.img`
 const SweetAction = styled.div`
   position: absolute;
   right: 10px;
-  top: 10px;
+  top: 8px;
 `;
 
 const ButtonContainer = styled.div`
