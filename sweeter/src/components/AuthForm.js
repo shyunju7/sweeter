@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { authService } from "../fbBase";
 
-const Container = styled.div`
+const Container = styled.form`
   width: 100%;
   max-width: 320px;
   display: flex;
@@ -38,7 +38,7 @@ const AuthSwitchButton = styled.span`
   margin-bottom: 50px;
   display: block;
   font-size: 12px;
-  text-decoration: underline;
+  text-align: center;
 `;
 
 const AuthForm = () => {
@@ -60,6 +60,7 @@ const AuthForm = () => {
     e.preventDefault();
     try {
       let data;
+      console.log("onSubmit()....");
       if (isNewAccount) {
         // create new User
         data = await createUserWithEmailAndPassword(
