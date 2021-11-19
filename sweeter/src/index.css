@@ -39,16 +39,12 @@ form {
   justify-content: center;
 }
 
-.nweet-input::placeholder {
-  color: white;
-  opacity: 0.9;
-}
-
 .container {
   width: 100%;
   max-width: 320px;
   display: flex;
   flex-direction: column;
+  margin-top: 32px;
 }
 
 .formInput {
@@ -70,6 +66,7 @@ form {
   border-radius: 20px;
   background-color: #04aaff;
   cursor: pointer;
+  font-size: 14px;
 }
 
 .cancelBtn {
@@ -78,21 +75,12 @@ form {
   margin-left: 4px;
 }
 
-/* Profile Page */
-
-.profileForm {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.9);
-  padding-bottom: 30px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+/* Profile */
+.profile_input {
+  margin-bottom: 12px;
 }
 
-.logOut {
-  margin-top: 50px;
-}
-
-/* Nwitter Factory */
+/* Factory */
 
 .factoryInput__arrow {
   position: absolute;
