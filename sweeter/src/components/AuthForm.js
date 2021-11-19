@@ -3,7 +3,43 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import React, { useState } from "react";
+import styled from "styled-components";
 import { authService } from "../fbBase";
+
+const Container = styled.div`
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const AuthInput = styled.input`
+  max-width: 320px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 1);
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: black;
+`;
+
+const AuthError = styled.span`
+  color: tomato;
+  text-align: center;
+  font-weight: 500;
+  font-size: 12px;
+`;
+
+const AuthSwitchButton = styled.span`
+  color: #04aaff;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  display: block;
+  font-size: 12px;
+  text-decoration: underline;
+`;
 
 const AuthForm = () => {
   const [email, setEmail] = useState("");
@@ -42,36 +78,35 @@ const AuthForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input
-          name="email"
-          type="email"
-          placeholder="E-Mail"
-          required
-          value={email}
-          onChange={onChange}
-          autoComplete="off"
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          required
-          value={password}
-          onChange={onChange}
-          autoComplete="off"
-        />
-        <input
-          type="submit"
-          value={isNewAccount ? "Create Account" : "Login"}
-        />
-      </form>
-      <span onClick={toggleAccount}>
+    <Container onSubmit={onSubmit}>
+      <AuthInput
+        name="email"
+        type="email"
+        placeholder="E-Mail"
+        required
+        value={email}
+        onChange={onChange}
+        autoComplete="off"
+      />
+      <AuthInput
+        name="password"
+        type="password"
+        placeholder="Password"
+        required
+        value={password}
+        onChange={onChange}
+        autoComplete="off"
+      />
+      <AuthInput
+        className="authSubmit"
+        type="submit"
+        value={isNewAccount ? "Create Account" : "Login"}
+      />
+      <AuthSwitchButton onClick={toggleAccount}>
         {isNewAccount ? "회원가입하기" : "로그인하기"}
-      </span>
-      {error}
-    </div>
+      </AuthSwitchButton>
+      {error && <AuthError>{error}</AuthError>}
+    </Container>
   );
 };
 
