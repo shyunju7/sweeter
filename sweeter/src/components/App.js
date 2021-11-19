@@ -2,6 +2,7 @@ import AppRouter from "./Router";
 import React, { useEffect, useState } from "react";
 import { authService } from "../fbBase";
 import { updateProfile } from "firebase/auth";
+import Footer from "./Footer";
 
 function App() {
   const [init, setInit] = useState(false);
@@ -42,7 +43,7 @@ function App() {
       ) : (
         "initializing..."
       )}
-      <footer>&copy; {new Date().getFullYear()} Sweeter</footer>
+      <Footer />
     </>
   );
 }

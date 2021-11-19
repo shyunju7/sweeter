@@ -15,7 +15,7 @@ const Container = styled.form`
 
 const AuthInput = styled.input`
   max-width: 320px;
-  width: 100%;
+  width: 320px;
   padding: 10px;
   border-radius: 30px;
   background-color: rgba(255, 255, 255, 1);
