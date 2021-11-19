@@ -3,6 +3,55 @@ import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import { addDoc, collection } from "firebase/firestore";
 import { dbService, storageService } from "../fbBase";
 import { v4 } from "uuid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
+
+const FactoryContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  margin-bottom: 20px;
+`;
+
+const FactoryForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
+const FactoryInput = styled.input`
+  flex-grow: 1;
+  height: 40px;
+  width: 320px;
+  padding: 0px 20px;
+  color: white;
+  border: 1px solid #04aaff;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 12px;
+`;
+
+const FactoryLabel = styled.label`
+  color: #04aaff;
+  cursor: pointer;
+
+  span {
+    margin-right: 10px;
+    font-size: 12px;
+  }
+`;
+
+const FactoryImage = styled.img`
+  height: 80px;
+  width: 80px;
+  border-radius: 40px;
+  background-image: ${(props) => props.attachment};
+`;
+
 const SweetFactory = ({ userObject }) => {
   const [sweet, setSweet] = useState("");
   const [attachment, setAttachment] = useState("");
@@ -58,23 +107,43 @@ const SweetFactory = ({ userObject }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input
+    <FactoryForm onSubmit={onSubmit}>
+      <FactoryContainer>
+        <FactoryInput
           value={sweet}
           type="text"
           placeholder="what's on your mind?"
           onChange={onChange}
+          maxLength={120}
         />
-        <input type="file" accept="image/*" onChange={onFileChange} />
-        <input type="submit" value="sweet" />
-        {attachment && (
-          <div>
-            <img src={attachment} width="50px" height="50px" alt="sweetImg" />
-          </div>
-        )}
-      </form>
-    </div>
+        <input type="submit" value="&rarr;" className="factoryInput__arrow" />
+      </FactoryContainer>
+
+      <FactoryLabel htmlFor="attach-file">
+        <span>Add Photos</span>
+        <FontAwesomeIcon icon={faPlus} />
+      </FactoryLabel>
+      <input
+        type="file"
+        id="attach-file"
+        accept="image/*"
+        onChange={onFileChange}
+        style={{ opacity: 0 }}
+      />
+      {attachment && (
+        <div className="factoryForm__attachment">
+          <FactoryLabel>
+            <FactoryImage
+              src={attachment}
+              width="50px"
+              height="50px"
+              alt="sweetImg"
+              attachment={attachment}
+            />
+          </FactoryLabel>
+        </div>
+      )}
+    </FactoryForm>
   );
 };
 

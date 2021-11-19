@@ -24,7 +24,7 @@ const Home = ({ userObject }) => {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <SweetFactory userObject={userObject} />
       {sweetList.map((sweet) => (
         <Sweet
