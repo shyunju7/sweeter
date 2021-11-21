@@ -59,13 +59,16 @@ const Profile = ({ userObject, refreshUser }) => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-
     // 변경됐다면 update
-    if (newDisplayName !== userObject.displayName) {
+    if (
+      newDisplayName !== userObject.displayName &&
+      newDisplayName.length > 0
+    ) {
       await updateProfile(userObject, { displayName: newDisplayName });
       refreshUser();
       alert("업데이트되었습니다:)");
     } else {
+      setNewDisplayName(userObject.displayName);
       return;
     }
   };
