@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/sweeter/static/css/main.4e531885.chunk.css",
-    "main.js": "/sweeter/static/js/main.3d22e809.chunk.js",
-    "main.js.map": "/sweeter/static/js/main.3d22e809.chunk.js.map",
+    "main.js": "/sweeter/static/js/main.1e8b6eb7.chunk.js",
+    "main.js.map": "/sweeter/static/js/main.1e8b6eb7.chunk.js.map",
     "runtime-main.js": "/sweeter/static/js/runtime-main.1fb0155f.js",
     "runtime-main.js.map": "/sweeter/static/js/runtime-main.1fb0155f.js.map",
     "static/js/2.fcc33d46.chunk.js": "/sweeter/static/js/2.fcc33d46.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.1fb0155f.js",
     "static/js/2.fcc33d46.chunk.js",
     "static/css/main.4e531885.chunk.css",
-    "static/js/main.3d22e809.chunk.js"
+    "static/js/main.1e8b6eb7.chunk.js"
   ]
 }
