@@ -14,6 +14,7 @@ const AuthButton = styled.button`
   width: 150px;
   background: white;
   cursor: pointer;
+  margin-top: 12px;
 `;
 
 const SocialLogin = () => {
@@ -21,11 +22,9 @@ const SocialLogin = () => {
     await signInWithPopup(authService, provider);
   };
   return (
-    <div>
-      <AuthButton onClick={onSocialLogin}>
-        Continue with Google <FontAwesomeIcon icon={faGoogle} />
-      </AuthButton>
-    </div>
+    <AuthButton onClick={onSocialLogin}>
+      Continue with Google <FontAwesomeIcon icon={faGoogle} />
+    </AuthButton>
   );
 };
 

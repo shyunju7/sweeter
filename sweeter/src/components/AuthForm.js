@@ -74,7 +74,7 @@ const AuthForm = () => {
       }
       console.log(data);
     } catch (error) {
-      setError(error.message);
+      setError(error.code);
     }
   };
 
