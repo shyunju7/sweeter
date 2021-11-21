@@ -57,7 +57,6 @@ const SweetFactory = ({ userObject }) => {
   const [attachment, setAttachment] = useState("");
   const onSubmit = async (e) => {
     e.preventDefault();
-
     if (sweet === "") {
       alert("내용을 입력해주세요!");
       return;
@@ -87,11 +86,11 @@ const SweetFactory = ({ userObject }) => {
       console.log(`ERROR:`, error);
     }
   };
+
   const onChange = (e) => {
     const {
       target: { value },
     } = e;
-
     setSweet(value);
   };
 

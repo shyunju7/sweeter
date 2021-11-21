@@ -1,9 +1,15 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, onSnapshot } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import Sweet from "../components/Sweet";
 import SweetFactory from "../components/SweetFactory";
 import { authService, dbService } from "../fbBase";
+
+const Guide = styled.p`
+  opacity: 0.7;
+  text-align: center;
+`;
 
 const Home = ({ userObject }) => {
   const [sweetList, setSweetList] = useState([]);
@@ -36,13 +42,17 @@ const Home = ({ userObject }) => {
   return (
     <div className="container">
       <SweetFactory userObject={userObject} />
-      {sweetList.map((sweet) => (
-        <Sweet
-          key={sweet.id}
-          sweetObject={sweet}
-          isOwner={sweet.creatorId === userObject.uid}
-        />
-      ))}
+      {sweetList.length > 0 ? (
+        sweetList.map((sweet) => (
+          <Sweet
+            key={sweet.id}
+            sweetObject={sweet}
+            isOwner={sweet.creatorId === userObject.uid}
+          />
+        ))
+      ) : (
+        <Guide>Be the first to sweet!</Guide>
+      )}
     </div>
   );
 };
