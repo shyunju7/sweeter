@@ -74,13 +74,15 @@ const Sweet = ({ sweetObject, isOwner }) => {
 
     if (ok) {
       await deleteDoc(doc(dbService, "sweets", sweetObject.id));
-      await deleteObject(ref(storageService, sweetObject.attachmentUrl))
-        .then(() => {
-          alert("삭제되었습니다:(");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      if (sweetObject.attachmentUrl !== "") {
+        await deleteObject(ref(storageService, sweetObject.attachmentUrl))
+          .then(() => {
+            alert("삭제되었습니다:(");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     } else {
       return;
     }
