@@ -57,6 +57,12 @@ const SweetFactory = ({ userObject }) => {
   const [attachment, setAttachment] = useState("");
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    if (sweet === "") {
+      alert("내용을 입력해주세요!");
+      return;
+    }
+
     let attachmentUrl = "";
     if (attachment !== "") {
       const attachmentRef = ref(storageService, `${userObject.uid}/${v4()}`);
