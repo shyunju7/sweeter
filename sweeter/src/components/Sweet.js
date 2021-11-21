@@ -36,7 +36,8 @@ const SweetInput = styled.input`
   border-radius: 20px;
   border: 1px solid #c4c4c4;
   color: black;
-  padding: 7px 0px !important;
+  padding: 7px 10px !important;
+  box-sizing: border-box;
   margin-bottom: 12px;
   cursor: auto;
 `;
