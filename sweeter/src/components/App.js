@@ -8,12 +8,12 @@ function App() {
   const [init, setInit] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userObject, setUserObject] = useState({});
-  const [newUserName, setNewUserName] = useState("");
+  //const [newUserName, setNewUserName] = useState("");
 
   const refreshUser = () => {
     const user = authService.currentUser;
     setUserObject(user);
-    setNewUserName(user.displayName);
+    //setNewUserName(user.displayName);
   };
 
   useEffect(() => {

@@ -27,7 +27,7 @@ const FactoryInput = styled.input`
   flex-grow: 1;
   height: 40px;
   width: 320px;
-  padding: 0px 20px;
+  padding-left: 10px;
   color: white;
   border: 1px solid #04aaff;
   border-radius: 20px;

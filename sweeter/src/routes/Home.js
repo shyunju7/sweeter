@@ -19,7 +19,7 @@ const Home = ({ userObject }) => {
     });
 
     return () => {
-      console.log(`clean up!`);
+      setSweetList([]);
     };
   }, []);
 
