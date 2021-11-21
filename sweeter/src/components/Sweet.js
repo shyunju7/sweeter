@@ -12,6 +12,7 @@ const SweetContainer = styled.div`
   width: 100%;
   max-width: 320px;
   padding: 8px 16px;
+  border: 1px solid #d4d4d4;
   border-radius: 10px;
   position: relative;
   display: flex;
@@ -35,7 +36,7 @@ const SweetInput = styled.input`
   border-radius: 20px;
   border: 1px solid #c4c4c4;
   color: black;
-  padding: 7px 20px !important;
+  padding: 7px 0px !important;
   margin-bottom: 12px;
   cursor: auto;
 `;
@@ -45,9 +46,11 @@ const SweetImg = styled.img`
   top: 16px;
   position: absolute;
   border-radius: 50%;
+  background-color: white;
   width: 50px;
   height: 50px;
   margin-top: 10px;
+  box-shadow: 2px 2px 2px #dddddd;
 `;
 
 const SweetAction = styled.div`
