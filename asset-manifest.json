@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/sweeter/static/css/main.49273395.chunk.css",
+    "main.css": "/sweeter/static/css/main.41290979.chunk.css",
     "main.js": "/sweeter/static/js/main.6825edd0.chunk.js",
     "main.js.map": "/sweeter/static/js/main.6825edd0.chunk.js.map",
     "runtime-main.js": "/sweeter/static/js/runtime-main.1fb0155f.js",
@@ -8,13 +8,13 @@
     "static/js/2.2b86034b.chunk.js": "/sweeter/static/js/2.2b86034b.chunk.js",
     "static/js/2.2b86034b.chunk.js.map": "/sweeter/static/js/2.2b86034b.chunk.js.map",
     "index.html": "/sweeter/index.html",
-    "static/css/main.49273395.chunk.css.map": "/sweeter/static/css/main.49273395.chunk.css.map",
+    "static/css/main.41290979.chunk.css.map": "/sweeter/static/css/main.41290979.chunk.css.map",
     "static/js/2.2b86034b.chunk.js.LICENSE.txt": "/sweeter/static/js/2.2b86034b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.1fb0155f.js",
     "static/js/2.2b86034b.chunk.js",
-    "static/css/main.49273395.chunk.css",
+    "static/css/main.41290979.chunk.css",
     "static/js/main.6825edd0.chunk.js"
   ]
 }
