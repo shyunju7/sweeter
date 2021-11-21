@@ -4,8 +4,7 @@ import styled from "styled-components";
 const Container = styled.footer`
   position: absolute;
   bottom: 0;
-
-  text-align: end;
+  text-align: center;
   width: 100%;
 `;
 
