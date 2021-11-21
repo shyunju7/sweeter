@@ -1,10 +1,9 @@
 # SWEETER
 
-<img src="https://user-images.githubusercontent.com/38373150/142761549-c4a0edc3-dd9f-4fcc-bd26-f05b7e082906.gif" width="50%" />
-
-
 twitter clone coding with firebase & reactJs <br />
 [NomadCoders-nwitter](https://nomadcoders.co/nwitter)
+
+<img src="https://user-images.githubusercontent.com/38373150/142761549-c4a0edc3-dd9f-4fcc-bd26-f05b7e082906.gif" width="50%" />
 
 #### 🔥 Using Firebase
 
