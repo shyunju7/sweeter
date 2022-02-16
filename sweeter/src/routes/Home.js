@@ -11,7 +11,7 @@ const Guide = styled.p`
   text-align: center;
 `;
 
-const Home = ({ userObject }) => {
+const Home = ({ userObject, isDarkMode }) => {
   const [sweetList, setSweetList] = useState([]);
 
   // snapshot - db에 변경을 알림
