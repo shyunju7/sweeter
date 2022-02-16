@@ -14,6 +14,7 @@ const FactoryContainer = styled.div`
   flex-wrap: wrap;
   position: relative;
   margin-bottom: 20px;
+  margin-top: 32px;
 `;
 
 const FactoryForm = styled.form`
