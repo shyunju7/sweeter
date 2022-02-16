@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const List = styled.ul`
+  width: 100%;
+  margin: 0px;
   display: flex;
   justify-content: center;
   padding-top: 50px;

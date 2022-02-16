@@ -4,7 +4,7 @@ import Home from "../routes/Home";
 import Auth from "../routes/Auth";
 import Profile from "../routes/Profile";
 import Navigation from "./Navigation";
-const AppRouter = ({ refreshUser, isLoggedIn, userObject }) => {
+const AppRouter = ({ refreshUser, isLoggedIn, userObject, isDarkMode }) => {
   return (
     <Router>
       {isLoggedIn && <Navigation userObject={userObject} />}
@@ -16,19 +16,27 @@ const AppRouter = ({ refreshUser, isLoggedIn, userObject }) => {
                 exact
                 path="/"
                 element={
-                  <Home userObject={userObject} refreshUser={refreshUser} />
+                  <Home
+                    userObject={userObject}
+                    refreshUser={refreshUser}
+                    isDarkMode={isDarkMode}
+                  />
                 }
               />
               <Route
                 exact
                 path="/profile"
                 element={
-                  <Profile userObject={userObject} refreshUser={refreshUser} />
+                  <Profile
+                    userObject={userObject}
+                    refreshUser={refreshUser}
+                    isDarkMode={isDarkMode}
+                  />
                 }
               />
             </>
           ) : (
-            <Route exact path="/" element={<Auth />} />
+            <Route exact path="/" element={<Auth isDarkMode={isDarkMode} />} />
           )}
         </Routes>
       </div>

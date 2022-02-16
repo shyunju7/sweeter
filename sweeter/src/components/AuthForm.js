@@ -19,6 +19,8 @@ const AuthInput = styled.input`
   padding: 10px;
   border-radius: 30px;
   background-color: rgba(255, 255, 255, 1);
+  border: 1px solid;
+  border-color: ${(props) => (props.borderColor ? props.borderColor : "none")};
   margin-bottom: 10px;
   font-size: 12px;
   color: black;
@@ -88,6 +90,7 @@ const AuthForm = () => {
         value={email}
         onChange={onChange}
         autoComplete="off"
+        borderColor="#dddddd"
       />
       <AuthInput
         name="password"
@@ -97,11 +100,13 @@ const AuthForm = () => {
         value={password}
         onChange={onChange}
         autoComplete="off"
+        borderColor="#dddddd"
       />
       <AuthInput
         className="authSubmit"
         type="submit"
         value={isNewAccount ? "Create Account" : "Login"}
+        borderColor="#04aaff"
       />
       <AuthSwitchButton onClick={toggleAccount}>
         {isNewAccount ? "회원가입하기" : "로그인하기"}

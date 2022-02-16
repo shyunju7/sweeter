@@ -15,6 +15,7 @@ const AuthButton = styled.button`
   background: white;
   cursor: pointer;
   margin-top: 12px;
+  border: 1px solid #d9d9d9;
 `;
 
 const SocialLogin = () => {

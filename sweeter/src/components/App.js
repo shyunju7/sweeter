@@ -49,7 +49,7 @@ function App() {
   return (
     <>
       {init ? (
-        <div>
+        <div id={isDarkMode ? "dark_mode" : "light_mode"}>
           <ThemeSwitchButton
             onClick={() => setDarkMode((prev) => !prev)}
             isDarkMode={isDarkMode}
