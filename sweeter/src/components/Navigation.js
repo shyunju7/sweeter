@@ -8,12 +8,12 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 const List = styled.ul`
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  padding-top: 50px;
   list-style: none;
 `;
 
 const Item = styled.li`
-  color: ${(props) => (props.current ? "#04aaff" : "#ffffff")};
+  color: ${(props) => (props.current ? "#04aaff" : "#d9d9d9")};
 `;
 
 const NavLink = styled(Link)`
